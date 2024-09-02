@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+
+    <!-- React : 어플리케이션을 interactive하도록 만들어주는 library -->
+    <!-- ReactDOM : react element들을 HTML에 보여주는 library-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script>
+        // Javascript를 이용해 element 생성하고 ReactJS가 HTML로 만들어줌
+        // VanillaJS : HTML -> JS 순서, ReactJS : JS -> HTML 순서
+        const root = document.getElementById("root");
+        const span = React.createElement("span", {id: "reactSpan"}, "Hello, I'm span");
+        ReactDOM.render(span, root); 
+    </script>
+</html>
