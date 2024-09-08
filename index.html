@@ -16,24 +16,21 @@
         const root = document.getElementById("root");
         // JSX : createElement 대체, HTML과 비슷하여 개발자를 편리하게 도와줌
         // 컴포넌트의 첫 글자는 반드시 대문자여야 함
-        function Title() {
-            return (
-                <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
-                    Hello, I'm title
-                </h3>
-            )
+        let counter = 0;
+        function countUp() {
+            counter += 1;
+            render();
         }
-        const Btn = () => (
-            <button style={{ backgroundColor: "tomato" }} onClick={() => console.log("Clicked")}>
-                Click me
-            </button>
-        );
+        // 리랜더링 : ReactJs는 전체를 전부 재생성할 필요 없이 바뀐 부분만 새로 생성할 수 있도록 도와줌
+        function render() {
+            ReactDOM.render(<Container />, root);
+        }
         const Container = () => (
             <div>
-                <Title/>
-                <Btn/>
+                <h3>Total clicks: {counter}</h3>
+                <button onClick={countUp}>Click me</button>
             </div>
         );
-        ReactDOM.render(<Container/>, root); 
+        render();
     </script>
 </html>
