@@ -1,31 +1,58 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <div id="root"></div>
-    </body>
+  <body>
+    <div id="root"></div>
+  </body>
 
-    <!-- React : 어플리케이션을 interactive하도록 만들어주는 library -->
-    <!-- ReactDOM : react element들을 HTML에 보여주는 library -->
-    <!-- BABEL : 코드 변환을 도와주는 library -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel">
-        const root = document.getElementById("root");
-        // JSX는 html과 비슷한 형태를 가지지만 javascript 기반이므로
-        // javascript 용어인 for, class 등은 직접 사용할 수 없음
-        // for => htmlFor, class => className
-        function App() {
-            return (
-                <div>
-                    <h1 className="hi">Super Converter</h1>
-                    <label htmlFor="minutes">Minutes</label>
-                    <input id="minutes" placeholder="Minutes" type="number"/>
-                    <label htmlFor="hours">Hours</label>
-                    <input id="hours" placeholder="Hours" type="number"/>
-                </div>
-            );
-        };
-        ReactDOM.render(<App />, root);
-    </script>
+  <!-- React : 어플리케이션을 interactive하도록 만들어주는 library -->
+  <!-- ReactDOM : react element들을 HTML에 보여주는 library -->
+  <!-- BABEL : 코드 변환을 도와주는 library -->
+  <script
+    src="https://unpkg.com/react@17/umd/react.development.js"
+    crossorigin
+  ></script>
+  <script
+    src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    crossorigin
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [minutes, setMinutes] = React.useState(0);
+      const onChange = (event) => {
+        setMinutes(event.target.value);
+      }
+      const reset = () => setMinutes(0);
+      return (
+        <div>
+          <h1 className="hi">Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              value={minutes}
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={onChange}
+            />
+          </div>
+
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              value={minutes / 60}
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              disabled
+            />
+          </div>
+
+          <button onClick={reset}>Reset</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+  </script>
 </html>
