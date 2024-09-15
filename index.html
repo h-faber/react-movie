@@ -17,27 +17,33 @@
   ></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Btn({ text, big }) {
+    function Btn({ text, changeValue }) {
       return (
         <button
+          onClick={changeValue}
           style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
-            fontSize: big ? 18 : 10,
           }}
         >
           {text}
         </button>
       );
     }
+    // React.memo()
+    // 컴포넌트가 동일한 props로 동일한 결과를 렌더링한다면
+    // 마지막으로 렌더링된 결과를 재사용하여 성능 향상을 누릴 수 있음
+    const MemorizedBtn = React.memo(Btn);
     function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
       return (
         <div>
-          <Btn text="Save Changes" big={true} />
-          <Btn text="Confirm" big={false} />
+          <MemorizedBtn text={value} changeValue={changeValue} />
+          <MemorizedBtn text="Confirm" />
         </div>
       );
     }
